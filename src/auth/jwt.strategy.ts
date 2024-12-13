@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 // src/auth/jwt.strategy.ts
 import { Injectable } from '@nestjs/common';
-import { PassportStrategy } from '@nestjs/passport';
+import { PassportStrategy } from '@nestjs/passport'
 import { Strategy, ExtractJwt } from 'passport-jwt';
 // import { AuthService } from './auth.service';
 
@@ -10,7 +10,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   constructor() {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(), // Extract JWT from Authorization header
-      secretOrKey: process.env.JWT_KEY, // Secret key for JWT (ensure JWT_KEY is in your .env file)
+      secretOrKey: process.env.JWT_KEY||'6PAOIeoalwiU+QJaMQa6pSrOqrFcde7waotpz4cCjkI=', // Secret key for JWT (ensure JWT_KEY is in your .env file)
       ignoreExpiration: false, // Do not ignore expiration
     });
 

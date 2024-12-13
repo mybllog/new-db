@@ -10,6 +10,22 @@ import { Contractor } from 'src/contractor/entities/contractor.entity';
     ConfigModule.forRoot({
       isGlobal: true,
     }),
+    //TypeOrmModule.forRootAsync({
+     // imports: [ConfigModule],
+      //inject: [ConfigService],
+     // useFactory: async (configService: ConfigService) => ({
+      //  type: 'mysql',
+      //  host: configService.get('DB_HOST'),
+      //  port: configService.get('DB_PORT'),
+      //  username: configService.get('DB_USERNAME'),
+      //  password: configService.get('DB_PASSWORD'),
+      //  database: configService.get('DB_NAME'),
+      //  synchronize: true, // Set to false in production
+       // entities: [Contractor, __dirname + '/../**/*.entity{.ts,.js}'],
+       // migrations: ['./migrations/*.ts'],
+       // logging: true, // Enable query logging (optional)
+      //}),
+    //}),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
@@ -26,7 +42,7 @@ import { Contractor } from 'src/contractor/entities/contractor.entity';
   // synchronize: false,
         logging: true, // Enable query logging (optional)
       }),
-    }),
+   }),
   ],
 })
 export class DatabaseModule {}

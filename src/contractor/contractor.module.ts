@@ -2,7 +2,7 @@
 // src/Contractors/Contractors.module.ts
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Contractor } from './entities/Contractor.entity';
+import { Contractor } from './entities/contractor.entity';
 import { ContractorsController } from './Contractor.controller';
 import { ConfigModule } from '@nestjs/config/dist/config.module';
 import { ConfigService } from '@nestjs/config/dist/config.service';
@@ -12,6 +12,7 @@ import { ContractorsService } from './contractor.service';
 import { JwtStrategy } from 'src/auth/jwt.strategy';
 
 @Module({
+  
   imports: [TypeOrmModule.forFeature([Contractor]),
   PassportModule,
     JwtModule.registerAsync({
@@ -22,7 +23,9 @@ import { JwtStrategy } from 'src/auth/jwt.strategy';
         signOptions: { expiresIn: '1h' }, // Set JWT expiration
       }),
     }),
+    
 ],
+
   controllers: [ContractorsController],
   providers: [ContractorsService, JwtStrategy],
   exports: [ContractorsService], // Export the service so it can be used in other modules

@@ -14,8 +14,11 @@ import { UsersModule } from './users/users.module';
 import { ClientsModule } from './client/client.module';
 import { ContractorsModule } from './contractor/contractor.module';
 import { JwtAuthGuard } from './common/guards/jwt.guard';
-
+//import { Contractor } from './contractor/entities/contractor.entity';
+import { DataSource } from 'typeorm';
+import {  OnModuleInit } from '@nestjs/common';
 @Module({
+  
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
@@ -26,9 +29,10 @@ import { JwtAuthGuard } from './common/guards/jwt.guard';
       host: 'localhost',
       port: 3306,
       username: 'root',
-      password: 'mySQL@2024',
+      password: 'Adaeze34567890',
       database: 'driveway_service',
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
+      //entities: [Contractor],
       synchronize: true,
     }),
     DatabaseModule, // Add the DatabaseModule here
@@ -44,4 +48,14 @@ import { JwtAuthGuard } from './common/guards/jwt.guard';
   controllers: [AppController],
   providers: [AppService, JwtAuthGuard],
 })
-export class AppModule {}
+
+export class AppModule implements OnModuleInit {
+  constructor(private dataSource: DataSource) {}
+
+  onModuleInit() {
+    // Log all registered entities using DataSource
+    console.log(
+      this.dataSource.entityMetadatas.map(meta => meta.name)
+    );
+  }
+}

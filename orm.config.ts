@@ -9,7 +9,7 @@ export default new DataSource({
   host: process.env.DB_HOST || 'localhost',
   port: +process.env.DB_PORT || 3306,
   username: process.env.DB_USERNAME || 'root',
-  password: process.env.DB_PASSWORD || 'mySQL@2024',
+  password: process.env.DB_PASSWORD || 'Adaeze34567890',
   database: process.env.DB_NAME || 'driveway_service',
   entities: [Contractor, Client, Quote], // Add all your entities here
   migrations: ['./migrations/*.ts'],
